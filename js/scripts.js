@@ -19,8 +19,9 @@ $(document).ready(function(){
 	  });
 	  return this;
 	};
-
-	//popup block
+    
+	
+    //popup block
 	$('.js-popup-wrap .js-btn-toggle').on('click', function() {
 		if ($(this).hasClass('active')) {
 			$(this).removeClass('active');
@@ -55,51 +56,14 @@ $(document).ready(function(){
 			$(this).find('.js-btn-toggle').html(currentSelect);
 		}
 	})
-	$('.js-popup-wrap.js-popup-select .js-popup-block a').on('click', function() {
-		if ($(this).hasClass('active')) {} else {
-			$(this).parents('.js-popup-wrap').find('.js-popup-block').find('.active').removeClass('active');
-			$(this).addClass('active');
-		}
-		$('.js-popup-wrap').each(function() {
-			if ($(this).hasClass('js-popup-select')) {
-				if ($(this).find('.js-popup-block').find('.active').length>0) {} else {
-					$(this).find('.js-popup-block').find('li').eq(0).children('a').addClass('active');
-				}
-				var currentSelect = $(this).find('.js-popup-block').find('.active').html();
-				$(this).find('.js-btn-toggle').html(currentSelect);
-			}
-		})
-		$(this).parents('.js-popup-wrap').find('.js-btn-toggle').removeClass('active');
-		return false;
-	})
 
-	//tabs
-	$('.js-tabs-nav').each(function() {
-		$('.js-tab-block[data-tab*="'+$(this).find('.active').attr('data-tab')+'"]').addClass('active');
-	})
-	$('.js-tab-title').each(function() {
-		if ($(this).hasClass('active')) {
-			$(this).next('.js-tab-content').show(0);
-		}
-	})
-	$('.js-tabs-nav li a').on('click', function() {
-		if ($(this).hasClass('active')) {} else {
-			$('.js-tab-block').removeClass('active');
-			$(this).parents('.js-tabs-nav').find('.active').removeClass('active');
-			$(this).addClass('active');
-			$('.js-tabs-nav').each(function() {
-				$('.js-tab-block[data-tab*="'+$(this).find('.active').attr('data-tab')+'"]').addClass('active');
-			})
-		}
-		return false;
-	})
-	$('.js-tab-title').on('click' , function() {
-		if ($(this).hasClass('active')) {
-			$(this).removeClass('active').next('.js-tab-content').slideUp(200);
-		} else {
-			$(this).addClass('active').next('.js-tab-content').slideDown(200);
-		}
-	})
+    //item-tile-video
+    $('.js-btn-video').on('click', function () {
+        let videoURL = $(this).parent('.item-tile-video').attr('data-video');
+        $(this).parents('.item-tile-video').addClass('active');
+        $(this).parents('.item-tile-video').append('<iframe width="100%" height="100%" src="' + videoURL + '" frameborder="0" allowfullscreen></iframe>')
+        return false;
+    })
 	
 });
 
